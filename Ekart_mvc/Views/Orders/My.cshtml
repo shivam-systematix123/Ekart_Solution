@@ -1,0 +1,87 @@
+﻿@model IEnumerable<Ekart_mvc.Models.order.Order>
+
+@{
+    ViewBag.Title = "Order Summary";
+    Layout = "~/Views/Shared/Bask.cshtml";
+}
+
+<h2>Order Summary</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            Order Id
+        </th>
+        <th>
+            Order Date Time
+        </th>
+        <th>
+            Delivery Date
+        </th>
+        <th>
+            Order Address
+        </th>
+        <th>
+            Pin-Code
+        </th>
+        <th>
+            Name
+        </th>
+        <th>
+            Email-Id
+        </th>
+        <th>
+            Contact No.
+        </th>
+        <th>
+            Status
+        </th>
+        <th>
+            Remark
+        </th>
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+       SHIV-@Html.DisplayFor(modelItem => item.OrderId)-ID
+    </td>
+
+    <td>
+        @Html.DisplayFor(modelItem => item.CreatedAt)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DeliveryDate)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Address)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.PinCode)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Email)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Contact)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Status)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Remark)
+    </td>
+    <td>
+        <a href="@Url.Action("Summary", "Orders" ,new { orderid = item.OrderId } )" class="btn btn-default" style="background-color:slategrey; color:white;">Expand</a>
+
+    </td>
+</tr>
+}
+
+</table>

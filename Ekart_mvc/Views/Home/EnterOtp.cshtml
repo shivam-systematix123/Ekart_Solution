@@ -3,6 +3,12 @@
 @{
     ViewBag.Title = "EnterOtp";
     Layout = "~/Views/Shared/_Layout.cshtml";
+   
+    var y = Session["OTP"];
+    
+    <h3>
+        @Html.DisplayFor(modelItem => y)
+    </h3>
 }
 
 <h2>EnterOtp</h2>

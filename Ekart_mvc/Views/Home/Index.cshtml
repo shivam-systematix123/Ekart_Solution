@@ -1,23 +1,17 @@
 ﻿@model Ekart_mvc.Models.Register
-
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Registration</h2>
-<script type="text/javascript">
-    function Validate() {
 
-        if (ValidateDOB()) {
-            return True;
-        }
-        else {
-            alert("Enter All Details Are Correct !!!", redirect("Index");
-          
-        }
-    }
-    function ValidateDOB(){
-       
+<script type="text/javascript">
+
+
+    function ValidateDOB()
+    {
+
         var lblError = document.getElementById("lblError");
 
         //Get the date from the TextBox.
@@ -26,8 +20,8 @@
 
         //Check whether valid dd/MM/yyyy Date Format.
         if (regex.test(dateString)) {
-            var parts = dateString.split("/");
-            var dtDOB = new Date(parts[1] + "/" + parts[0] + "/" + parts[2]);
+            var parts = dateString.split("-");
+            var dtDOB = new Date(parts[1] + "-" + parts[0] + "-" + parts[2]);
             var dtCurrent = new Date();
             lblError.innerHTML = "Eligibility 18 years ONLY."
             if (dtCurrent.getFullYear() - dtDOB.getFullYear() < 18) {
@@ -47,35 +41,42 @@
                     }
                 }
             }
-            lblError.innerHTML = "";
-            return true;
-        } else {
-            lblError.innerHTML = "Enter date in dd/MM/yyyy format ONLY."
-            return false;
         }
+            lblError.innerHTML = "";
+            return true;        }
+    var inputfields = document.getElementsById("");
+    for (var i = 0; i < inputfields.length; i++) {
+        inputfields[i].addEventListener('keyup', function (e) {
+            // On every key up, check the password
+            var password = document.getElementById('sf_guard_user_password');
+            validatePassword(password.value);
+        })
     }
 </script>
 
-@using (Html.BeginForm()) 
+
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
 <div class="form-horizontal">
     <h4>Register</h4>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @* @Html.ActionLink("Login", "Index", "Home", null, new { @class = "navbar-brand" })*@
+
     <div class="form-group">
         @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.FirstName, new { htmlAttributes =  new { @class = "form-control" , required="required" , placeholder="Enter First Name "} })
+            @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", id ="a",required = "required", placeholder = "Enter First Name " } })
             @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2"})
+        @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", required = "required", placeholder = "Enter Last Name " } })
+            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", id = "a", required = "required", placeholder = "Enter Last Name " } })
             @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -83,7 +84,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control",Type="Email", required = "required", placeholder = "Enter E-Mail"  } })
+            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", id = "a", Type = "Email", required = "required", placeholder = "Enter E-Mail" } })
             @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -91,7 +92,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.Contact, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.Contact, new { htmlAttributes = new { @class = "form-control", required = "required", placeholder = "Enter Mobile Number" } })
+            @Html.EditorFor(model => model.Contact, new { htmlAttributes = new { @class = "form-control", id = "a", required = "required", placeholder = "Enter Mobile Number" } })
             @Html.ValidationMessageFor(model => model.Contact, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -99,61 +100,111 @@
     <div class="form-group">
         @Html.LabelFor(model => model.DOB, "Date Of Birth", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.DOB, new { htmlAttributes = new { @class = "form-control", type = "text", onblur = "ValidateDOB()", required = "required", id = "txtDate" } })
+            @Html.EditorFor(model => model.DOB, new { htmlAttributes = new { @class = "form-control", type = "date",  onblur = "ValidateDOB()", required = "required", id = "txtDate" } })
             @Html.ValidationMessageFor(model => model.DOB, "", new { @class = "text-danger" })
             <span class="error" id="lblError"></span>
         </div>
     </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Password, new { htmlAttributes =  new { @class = "form-control" , Type = "Password", required = "required", placeholder = "Enter PassWord " } })
-            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+     <div class="form-group">
+            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", id = "a", Type = "Password", placeholder = "Enter PassWord ", required = "required", pattern = "(?=.*/d)(?=.*[a-z])(?=.*[A-Z]).{8,}", title = "Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" } })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+
+            </div>
         </div>
+@*<div class="form-group">
+    <input type="password" name="password_admin1_create" oninput="validate_password()"><br><br>
+    <script>
+
+        function validatePassword(password) {
+            return /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!#$%^&*])(?=.{8,})/.test(password);
+        }
+
+        var password = document.getElementsByName("password_admin1_create")[0];
+
+        function validate_password() {
+
+            if (validatePassword(password.value)) {
+                document.getElementById("password_result_invalid").style.visibility = "hidden";
+                document.getElementById("password_result_invalid").style.height = "0";
+            } else {
+                document.getElementById("password_result_invalid").style.visibility = "visible";
+                document.getElementById("password_result_invalid").style.height = "initial";
+            }
+        }
+    </script>
+    <div id="password_result_invalid" class="error_verify">
+        <p style="color:red">Invalid password format.</p>
     </div>
 
+    <p>Please confirm the password:</p>
+    <input type="password" name="password_admin1_create_confirm" oninput="return validate_password_confirm()"><br><br>
+    <script>
+        var password_confirm = document.getElementsByName("password_admin1_create_confirm")[0];
+        var password = document.getElementsByName("password_admin1_create")[0];
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.SecurityQue, "Security Question",htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-
-            @{
-                List<SelectListItem> listItems = new List<SelectListItem>();
-                listItems.Add(new SelectListItem
-                {
-                    Text = "--Please Select Any Question--",
-                    Value = null,
-                    Selected = true
-                });
-                listItems.Add(new SelectListItem
-                {
-                    Text = "What Is Your Pet Name?",
-                    Value = "What Is Your Pet Name?"
-                });
-                listItems.Add(new SelectListItem
-                {
-                    Text = "What Is Your Nick Name?",
-                    Value = "What Is Your Nick Name?",
-                });
-                listItems.Add(new SelectListItem
-                {
-                    Text = "What Is Your First Teacher Name?",
-                    Value = "What Is Your First Teacher Name?"
-                });
+        function validate_password_confirm() {
+            if (password.value === password_confirm.value) {
+                document.getElementById("password_confirmation_invalid").style.visibility = "hidden";
+                document.getElementById("password_confirmation_invalid").style.height = "0";
+            } else {
+                document.getElementById("password_confirmation_invalid").style.visibility = "visible";
+                document.getElementById("password_confirmation_invalid").style.height = "initial";
             }
+        }
+    </script>
+    <div id="password_confirmation_invalid" class="error_verify">
+        <p style="color:red">Passwords do not match.</p>
+    </div>
+</div>
 
-            @Html.DropDownListFor(model => model.SecurityQue, listItems, new { htmlAttributes = new { @class = "form-control",required = "required"} })
-        </div>
+
+*@        <div class="form-group" id="a">
+            @Html.LabelFor(model => model.SecurityQue, "Security Question", htmlAttributes: new { @class = "control-label col-md-2" ,id = "a" })
+            <div class="col-md-10" id="a">
+
+                @{
+                    List<SelectListItem> listItems = new List<SelectListItem>();
+                    listItems.Add(new SelectListItem
+                    {
+                        Text = "--Please Select Any Question--",
+                        Value = null,
+                        Selected = true
+                    });
+                    listItems.Add(new SelectListItem
+                    {
+                        Text = "What Is Your Pet Name?",
+                        Value = "What Is Your Pet Name?"
+                    });
+                    listItems.Add(new SelectListItem
+                    {
+                        Text = "What Is Your Nick Name?",
+                        Value = "What Is Your Nick Name?",
+                        
+                    });
+                    listItems.Add(new SelectListItem
+                    {
+                        Text = "What Is Your First Teacher Name?",
+                        Value = "What Is Your First Teacher Name?"
+                       
+                    });
+                    
+                }
+
+                @Html.DropDownListFor(model => model.SecurityQue, listItems, new { htmlAttributes = new { @class = "form-control", id = "a",ConsoleColor= "antiquewhite", required = "required" } })
+            </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.Answer, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Answer, new { htmlAttributes = new { @class = "form-control", required = "required", placeholder = "Enter Your Answer " } })
+                @Html.EditorFor(model => model.Answer, new { htmlAttributes = new { @class = "form-control", id = "a", required = "required", placeholder = "Enter Your Answer " } })
                 @Html.ValidationMessageFor(model => model.Answer, "", new { @class = "text-danger" })
             </div>
         </div>
+     
 
         @*<div class="form-group">
                 @Html.LabelFor(model => model.RegisterTime, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -181,7 +232,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="SignUp" class="btn btn-default" onclick="return Validate()" />
+                <input type="submit" value="SignUp" id ="a" class="btn btn-default" onclick="Validate();" />
             </div>
         </div>
     </div>

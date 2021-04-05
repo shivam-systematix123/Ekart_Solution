@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="419bc429d3074c2e8741a71360926eaf" Name="Diagram1" ZoomLevel="40">
+        <EntityTypeShape EntityType="EkartModel.Basket" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="EkartModel.BasketItem" Width="1.5" PointX="5.25" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EkartModel.CategoryList" Width="1.5" PointX="0.75" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EkartModel.Order" Width="1.5" PointX="3" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EkartModel.OrderList" Width="1.5" PointX="5.25" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EkartModel.ProductList" Width="1.5" PointX="3" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="EkartModel.Record" Width="1.5" PointX="5.25" PointY="6.125" IsExpanded="true" />
+        <AssociationConnector Association="EkartModel.FK_BasketItems_Basket" ManuallyRouted="false" />
+        <AssociationConnector Association="EkartModel.FK_OrderList_Basket" ManuallyRouted="false" />
+        <AssociationConnector Association="EkartModel.FK_BasketItems_ProductList" ManuallyRouted="false" />
+        <AssociationConnector Association="EkartModel.FK_ProductList_CategoryList" ManuallyRouted="false" />
+        <AssociationConnector Association="EkartModel.FK_OrderList_Order" ManuallyRouted="false" />
+        <AssociationConnector Association="EkartModel.FK_Record_ProductList" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,117 @@
+﻿@model IEnumerable<Ekart_mvc.Models.Register>
+
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/Admin.cshtml";
+    var movie = Session["userName"];
+    if (movie != null)
+    {
+
+    <h3>Hello   @Html.DisplayFor(modelItem => movie)</h3>
+         
+
+    }
+    else
+    {
+        <script>alert("You are not login Please Login First"); window.location.replace('Logout','Home')</script>
+    }}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        <a href="@Url.Action("Create", "User" )" class="btn btn-default" style="background-color:black; color:wheat;">ADD NEW</a>
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                First Name
+            </th>
+            <th>
+               Last Name
+            </th>
+            <th>
+                Email-Id
+            </th>
+            <th>
+               Contact No.
+            </th>
+            <th>
+                Date Of Birth
+            </th>
+           @* <th>
+                @Html.DisplayNameFor(model => model.Password)
+            </th>*@
+        @*    <th>
+                @Html.DisplayNameFor(model => model.SecurityQue)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Answer)
+            </th>*@
+            <th>
+                Registration Time Date
+            </th>
+            <th>
+                Active Status
+            </th>
+            <th>
+                Role
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Contact)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DOB)
+        </td>
+        @*    <td>
+            @Html.DisplayFor(modelItem => item.Password)
+        </td>*@
+        @*    <td>
+            @Html.DisplayFor(modelItem => item.SecurityQue)
+        </td>
+        <td>*@
+        @*    @Html.DisplayFor(modelItem => item.Answer)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.RegisterTime)
+        </td>
+      
+            <td>
+                @Html.DisplayFor(modelItem => item.IsActive)
+                
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Roal)
+            </td>
+            <td>
+                <a href="@Url.Action("Edit", "User", new { id =item.UserId } )" class="btn btn-default" style="background-color:yellow; color:black;">EDIT</a>
+
+                @*   @Html.ActionLink("Details", "Details", new { id = item.UserId }) |*@
+                <a href="@Url.Action("Delete", "User", new { id =item.UserId } )" class="btn btn-default" style="background-color:red; color:black;">DELETE</a>
+            </td>
+        </tr>
+        }
+
+    </table>
+</body>
+</html>

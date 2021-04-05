@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "Conflict";
+    Layout = "~/Views/Shared/Cat.cshtml";
+    var movie = Session["userName"];
+    if (movie != null)
+    {
+
+        <h3>Hello,</h3>
+        <br />
+        <h3>
+            @Html.DisplayFor(modelItem => movie)
+        </h3>
+
+    }
+    else
+    {
+        <script>alert("You are not login Please Login Firsr"); window.location.replace('Logout')</script>
+    }
+}
+
+<script>alert("You Can't Delete This Category Beacuse In Product List This Category Is Present Please Delete First Product Define By Thise Category"); window.location.replace('Index')</script>

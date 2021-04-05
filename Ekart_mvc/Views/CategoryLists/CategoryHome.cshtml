@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "CategoryHome";
+    Layout = "~/Views/Shared/Cat.cshtml";
+    var movie = Session["userName"];
+    if (movie != null)
+    {
+
+        <h3>Hello,</h3>
+        <br />
+        <h3>
+            @Html.DisplayFor(modelItem => movie)
+        </h3>
+
+    }
+    else
+    {
+        <script>alert("You are not login Please Login Firsr"); window.location.replace('Logout')</script>
+    }
+}
+<center>
+    <h2>CategoryHome</h2>
+</center>

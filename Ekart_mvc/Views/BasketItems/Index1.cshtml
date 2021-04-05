@@ -1,0 +1,97 @@
+﻿@model IEnumerable<Ekart_mvc.Models.order.BasketItem>
+
+@{
+    Decimal k = 0;
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Bask.cshtml";
+    var movie = Session["userName"];
+    if (movie != null)
+    {
+
+        <h3>Hello,    @Html.DisplayFor(modelItem => movie)</h3>
+
+    }
+    else
+    {
+        <script>alert("You are not login Please Login First"); window.location.replace('Logout', 'Home')</script>
+    }
+}
+
+
+<h2>Basket Summary</h2>
+<style>
+    .h5 {
+        color: white;
+        font-size: 50px;
+    }
+</style>
+<p>
+    <a href="@Url.Action("Index", "BasketItems" )" class="btn btn-default" style="background-color:forestgreen; color:white;">Add More Items</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @*            @Html.DisplayNameFor(model => model.ProductName)
+            *@
+            Item Name
+
+        </th>
+        <th>
+            @*            @Html.DisplayNameFor(model => model.ProductName)
+            *@
+            Unit
+
+        </th>
+        <th>
+            @*            @Html.DisplayNameFor(model => model.Price)
+            *@
+            Quantity
+        </th>
+        <th>
+            @*            @Html.DisplayNameFor(model => model.CreatedAt)
+            *@
+            Price per Item
+        </th>
+        <th>
+            @*            @Html.DisplayNameFor(model => model.CreatedBy)
+            *@
+            Total
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        var c = item.Quantity * item.Price;
+        k = (Decimal)k + (Decimal)c;
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.ProductList.ProductName)
+    </td>
+    <td>
+       Pre-@Html.DisplayFor(modelItem => item.ProductList.Unit)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Quantity)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Price)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => c)
+    </td>
+    <td>
+        <a href="@Url.Action("Removeb", "basketItems", new { productId =item.ProductId } )" class="btn btn-default" style="background-color:darkred; color:white;">-</a>
+    </td>
+    <td>
+        <a href="@Url.Action("AddToBasket", "basketItems", new { productId =item.ProductId } )" class="btn btn-default" style="background-color:green; color:white;">+</a>
+    </td>
+</tr>
+
+    }
+    <h3 style="color:#808080; font-family:'Arial Rounded MT';text-align:right"> <span class="btn btn-info">@Html.ActionLink("Check Out", "Create", "Orders")</span></h3>
+</table>
+<h2 style="padding-left: 700px;">  <strong>Total @Html.DisplayFor(modelItem => k)/- Rs</strong></h2>
+
+
+
+

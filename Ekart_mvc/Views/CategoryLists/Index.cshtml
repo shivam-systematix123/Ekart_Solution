@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Ekart_mvc.Models.order.CategoryList>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Admin.cshtml";
+    var movie = Session["userName"];
+    if (movie != null)
+    {
+
+        <h3>Hello</h3>
+       
+        <h3>
+            @Html.DisplayFor(modelItem => movie)
+        </h3>
+
+    }
+    else
+    {
+        <script>alert("You are not login Please Login Firsr"); window.location.replace('Logout')</script>
+    }
+}
+
+<h2>Category List</h2>
+
+<p>
+    <a href="@Url.Action("Create", "CategoryLists" )" class="btn btn-default" style="background-color:black; color:wheat;">ADD NEW</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+Name
+        </th>
+        <th>
+Adding-Date-Time        </th>
+        <th>
+Added By        </th>
+        <th>
+Active-Status        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedAt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsActive)
+            </td>
+            <td>
+                <a href="@Url.Action("Edit", "CategoryLists", new { id =item.CategoryId } )" class="btn btn-default" style="background-color:green; color:wheat;">EDIT</a>
+@*                @Html.ActionLink("Details", "Details", new { id = item.CategoryId }) |
+*@                <a href="@Url.Action("Delete", "CategoryLists", new { id =item.CategoryId } )" class="btn btn-default" style="background-color:red; color:wheat;">DELETE</a>
+            </td>
+        </tr>
+    }
+
+</table>

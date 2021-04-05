@@ -1,0 +1,79 @@
+﻿@model Ekart_mvc.Models.order.CategoryList
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/Admin.cshtml";
+
+    var movie = Session["userName"];
+    if (movie != null)
+    {
+
+        <h3>Hello</h3>
+
+        <h3>
+            @Html.DisplayFor(modelItem => movie)
+        </h3>
+
+    }
+    else
+    {
+        <script>alert("You are not login Please Login Firsr"); window.location.replace('Logout')</script>
+    } }
+<h2>Add New Category</h2>
+<a href="@Url.Action("Index", "CategoryLists" )" class="btn btn-default" style="background-color:black; color:wheat;">Back To List</a>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>CategoryList</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.CategoryName, "Category Name", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CategoryName, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                @Html.ValidationMessageFor(model => model.CategoryName, "required", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @* <div class="form-group">
+                @Html.LabelFor(model => model.CreatedAt, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.CreatedAt, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CreatedAt, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+        @* <div class="form-group">
+                @Html.LabelFor(model => model.CreatedBy, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.CreatedBy, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CreatedBy, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        *@
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.IsActive, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="ADD" class="btn btn-default" style="background-color:green; color:wheat;" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

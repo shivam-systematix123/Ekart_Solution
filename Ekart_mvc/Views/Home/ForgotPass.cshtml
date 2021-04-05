@@ -4,16 +4,12 @@
     ViewBag.Title = "ForgotPass";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>ForgotPass</h2>
-
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Register</h4>
+        <h4>Forgot Pssword</h4>
         <hr />
        
         <div class="form-group">
@@ -36,7 +32,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Login", "Login")
 </div>
 
 @section Scripts {

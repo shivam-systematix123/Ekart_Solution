@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "Product Home";
+    Layout = "~/Views/Shared/Prod.cshtml";
+    var movie = Session["userName"];
+    if (movie != null)
+    {
+
+        <h3>Hello,</h3>
+        <br />
+        <h3>
+            @Html.DisplayFor(modelItem => movie)
+        </h3>
+
+    }
+    else
+    {
+        <script>alert("You are not login Please Login First"); window.location.replace('Logout')</script>
+    }
+}
+<center>
+    <h2>Product Home</h2>
+</center>

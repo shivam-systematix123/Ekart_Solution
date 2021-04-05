@@ -1,43 +1,101 @@
 ﻿@model Ekart_mvc.Models.Register
 @{
     ViewBag.Title = "Login";
-}
-<h2>Login</h2>
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var movie = Session["Check"];
+    if (movie != null)
+    {
 
-    <div class="form-horizontal">
-        <h4>Register</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", Type = "Email", required = "required", placeholder = "Enter E-Mail" } })
-                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-            </div>
+
+        <div class="alert alert-success">
+            <strong>Registration Successfully!</strong>
         </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", Type = "Password", required = "required", placeholder = "Enter PassWord " } })
-                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Login" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
+    }
+   
 }
 
-<div>
-    @Html.ActionLink("SignUp", "Index")
-    @Html.ActionLink("Forgot Password", "ForgotPass")
-</div>
+<style>
+    body {
+        font-family: "Times New Roman", Georgia, Serif;
+        background-color: antiquewhite;
+    }
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+    #a {
+        background-color: antiquewhite;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        font-family: "Playfair Display";
+        letter-spacing: 5px;
+        background-color: antiquewhite;
+    }
+
+    .image:hover {
+        opacity: 0.2;
+    }
+</style>
+<center>
+    <div class="col-md-12"><h3>Login</h3> <br /> <br /> <br /> <br /></div>
+    <body>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+
+                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-12" })
+                <br />
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", Type = "Email", required = "required", placeholder = "Enter E-Mail", id = "a" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <br />
+            <br />
+            <div class="form-group">
+                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-12" })
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", id = "a", Type = "Password", required = "required", placeholder = "Enter PassWord " } })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <br />
+            <br />
+            <div class="form-group">
+                <div class=" col-md-12">
+                    <br />
+                    <br />
+
+                    @*                    <input type="submit" value="Login" Id="a" class="btn btn-default " />
+                    *@
+
+                    @*                    <input type="submit" src="~/Content/ProductImages/unnamed.png" alt="submit Button" class="btn btn-default" />
+                    *@
+                    <input type="image" src="~/Content/ProductImages/unnamed.png" border="0" alt="Submit" height="60" width="100" />
+
+                </div>
+            </div>
+
+
+
+        }
+        <div class="col-md-12">
+            <br />
+            <br />
+            <br />
+            <br />
+            @Html.ActionLink("SignUp", "Index")
+        </div>
+
+        <div>
+
+            @Html.ActionLink("Forgot Password", "ForgotPass")
+        </div>
+    </body>
+    <center>
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+        }

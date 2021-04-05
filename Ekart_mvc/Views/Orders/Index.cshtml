@@ -1,0 +1,105 @@
+﻿@model IEnumerable<Ekart_mvc.Models.order.Order>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Admin.cshtml";
+    var movie = Session["userName"];
+    if (movie != null)
+    {
+
+        <h3>Hello   @Html.DisplayFor(modelItem => movie)</h3>
+
+
+    }
+    else
+    {
+        <script>alert("You are not login Please Login First"); window.location.replace('Logout','Home')</script>
+    }
+}
+
+<h2>Order List</h2>
+
+<p>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Order Id
+        </th>
+        <th>
+            Order Date Time
+        </th>
+
+        <th>
+            User Name
+        </th>
+        <th>
+            Contact No.
+        </th>
+        <th>
+            Email-Id
+        </th>
+        <th>
+            Pincode
+        </th>
+        <th>
+            Address
+        </th>
+        <th>
+            Delivery Date
+        </th>
+        <th>
+            Order Status
+        </th>
+        <th>
+            Remark
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                SHIV-@Html.DisplayFor(modelItem => item.OrderId)-ID
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedAt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Contact)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PinCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeliveryDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Remark)
+            </td>
+            <td>
+                <a href="@Url.Action("Edit", "Orders", new { id =item.OrderId } )" class="btn btn-default" style="background-color:green; color:black">ACCPECT</a>
+            </td>
+            <td>
+                <a href="@Url.Action("Reject", "Orders", new { id =item.OrderId } )" class="btn btn-default" style="background-color:red; color:black">REJECT</a>
+            </td>
+            <td>
+                <a href="@Url.Action("Details", "Orders", new { id =item.OrderId } )" class="btn btn-default" style="background-color:yellow; color:black">DETAILS</a>
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Ekart_mvc.Models.order.Record>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<h2>Stock Record</h2>
+
+
+<table class="table" style="background-color:lemonchiffon">
+    <tr>
+        <th>
+        Added Quantity
+        </th>
+        <th>
+        Added By
+        </th>
+        <th>
+        Added Time
+        </th>
+        <th>
+        Total Stock
+        </th>
+        <th>
+        Product Name 
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Quantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AddBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AddAt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CurrentQuantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductList.ProductName)
+        </td>
+    </tr>
+}
+
+</table>

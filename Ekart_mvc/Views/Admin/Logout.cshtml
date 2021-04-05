@@ -1,0 +1,27 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Logout</title>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Logout" class="btn btn-default" />
+            </div>
+        </div>
+
+        <script>
+        </script>
+    </head>
+    <body>
+        <div>
+        </div>
+    </body>
+</html>
+}
+

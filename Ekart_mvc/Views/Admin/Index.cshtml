@@ -1,0 +1,38 @@
+﻿    @{ViewBag.Title = "Home";
+        Layout = "~/Views/Shared/Admin.cshtml";
+        var movie = Session["userName"];
+        if (movie != null)
+        {
+
+        <h4>
+            <br />
+            Hello ,
+            <br />
+            @Html.DisplayFor(modelItem => movie)
+        </h4>
+
+    }
+    else { <script>alert("You are not login Please Login Firsr"); window.location.replace('Logout')</script> }
+}
+
+<br />
+<br />
+<br />
+<br />
+<center>
+    <h4>You Are In Admin Panel</h4>
+</center>
+
+
+
+
+
+
+
+
+
+<div>
+    @Html.ActionLink("Exit To Admin Panel", "Login", "Home")
+</div>
+
+

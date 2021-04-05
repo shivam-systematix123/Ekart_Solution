@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Ekart_mvc.Models.order.OrderList>
+@{
+    ViewBag.Title = "Summary";
+    Layout = "~/Views/Shared/Admin.cshtml";
+    Decimal k = 0;
+}
+
+<h2>Order Items</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            Product Name
+        </th>
+        <th>
+            Price Pre Unit
+        </th>
+        <th>
+            Quantity
+        </th>
+        <th>
+            Total
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        var c = item.Quantity * item.Price;
+        k = (Decimal)k + (Decimal)c;
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => c)
+            </td>
+            <td>
+                @* @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
+            </td>
+        </tr>
+
+    }
+    TOTAL @Html.DisplayFor(modelItem => k) /- RS
+
+</table>
+<a href="@Url.Action("Index", "Orders" )" class="btn btn-default" style="background-color:black; color:white">Back</a>

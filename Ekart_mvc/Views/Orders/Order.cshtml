@@ -1,0 +1,67 @@
+﻿@model Ekart_mvc.Models.order.Order
+
+@{
+    ViewBag.Title = "Order";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/Bask.cshtml";
+    var movie = Session["userName"];
+    if (movie != null)
+    {
+
+        <h3>Hello,</h3>
+        <br />
+        <h3>
+            @Html.DisplayFor(modelItem => movie)
+        </h3>
+
+    }
+    else
+    {
+        <script>alert("You are not login Please Login Firsr"); window.location.replace('Logout')</script>
+    }
+}
+
+<h2></h2>
+
+<div>
+    <h4>Your Order Is Placed ...</h4>
+    <body>
+        <table class="table">
+            <tr>
+                <th>
+                    Order Id
+                </th>
+                <th>
+                    Order Time Date
+                </th>
+                <th>
+                    Order Status
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    SHIVA-@Html.DisplayFor(model => model.OrderId)-ID
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.CreatedAt)
+                </td>
+
+
+
+
+                <td>
+                    @Html.DisplayFor(model => model.Status)
+                </td>
+            </tr>
+
+
+
+
+        </table>
+    </body>
+</div>
+<p>
+   @* @Html.ActionLink("Edit", "Edit", new { id = Model.OrderId }) |
+    @Html.ActionLink("Back to List", "Index")*@
+</p>

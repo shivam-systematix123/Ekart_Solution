@@ -1,0 +1,199 @@
+﻿@model Ekart_mvc.Models.Register
+
+@{
+    ViewBag.Title = "Create User Admin";
+    Layout = "~/Views/Shared/User.cshtml";
+    var movie = Session["userName"];
+    if (movie != null)
+    {
+
+        <h3>Hello,</h3>
+        <br />
+        <h3>
+            @Html.DisplayFor(modelItem => movie)
+        </h3>
+
+    }
+    else
+    {
+        <script>alert("You are not login Please Login First"); window.location.replace('Logout')</script>
+    }}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create</title>
+</head>
+<body>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Register</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Contact, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Contact, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                @Html.ValidationMessageFor(model => model.Contact, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DOB, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DOB, new { htmlAttributes = new { @class = "form-control" ,type="date", required = "required" } })
+                @Html.ValidationMessageFor(model => model.DOB, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", type="Password", required = "required" } })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SecurityQue, "Security Question", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+
+                @{
+                    List<SelectListItem> listItems = new List<SelectListItem>();
+                    listItems.Add(new SelectListItem
+                    {
+                        Text = "--Please Select Any Question--",
+                        Value = null,
+                        Selected = true
+                    });
+                    listItems.Add(new SelectListItem
+                    {
+                        Text = "What Is Your Pet Name?",
+                        Value = "What Is Your Pet Name?"
+                    });
+                    listItems.Add(new SelectListItem
+                    {
+                        Text = "What Is Your Nick Name?",
+                        Value = "What Is Your Nick Name?",
+                    });
+                    listItems.Add(new SelectListItem
+                    {
+                        Text = "What Is Your First Teacher Name?",
+                        Value = "What Is Your First Teacher Name?"
+                    });
+                }
+
+                @Html.DropDownListFor(model => model.SecurityQue, listItems, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Answer, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Answer, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Answer, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.RegisterTime, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.RegisterTime, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.RegisterTime, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="col-md-10">
+                    @{
+                        List<SelectListItem> listItems2 = new List<SelectListItem>();
+                        listItems2.Add(new SelectListItem
+                        {
+                            Text = "Y",
+                            Value = "Y"
+                        });
+                        listItems2.Add(new SelectListItem
+                        {
+                            Text = "N",
+                            Value = "N"
+                        });
+                    }
+                @Html.DropDownListFor(model => model.IsActive, listItems2 , new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                </div>       
+                @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Roal, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="col-md-10">
+
+                    @{
+                        List<SelectListItem> listItems1 = new List<SelectListItem>();
+                        listItems1.Add(new SelectListItem
+                        {
+                            Text = "User",
+                            Value = "User"
+                         
+                        });
+                        listItems1.Add(new SelectListItem
+                        {
+                            Text = "Admin",
+                            Value = "Admin"
+                        });
+                    }
+
+                 @Html.DropDownListFor(model => model.Roal, listItems1, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                </div>              
+                @Html.ValidationMessageFor(model => model.Roal, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+</body>
+</html>

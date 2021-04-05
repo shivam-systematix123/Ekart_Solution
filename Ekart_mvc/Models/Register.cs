@@ -16,8 +16,9 @@ namespace Ekart_mvc.Models
         
         public string Contact { get; set; }
         [DisplayName("Date of Birth")]
-        [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> DOB { get; set; }
+        [MinLength(8)]
         public string Password { get; set; }
         public string SecurityQue { get; set; }
         public string Answer { get; set; }
